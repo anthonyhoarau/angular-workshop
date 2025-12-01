@@ -1,0 +1,31 @@
+@use "../../common";
+
+:host {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 20px;
+  background: common.$chroma-1;
+
+  h1 {
+    text-transform: uppercase;
+    margin: 0;
+    text-align: center;
+    color: common.$chroma-5;
+  }
+
+  #playerName {
+    text-align: center;
+    font-weight: bolder;
+    height: 40px;
+    background: common.$chroma-4;
+    border: none;
+    color: common.$chroma-1;
+    outline: none;
+  }
+
+  #startButton {
+    height: 40px;
+  }
+}

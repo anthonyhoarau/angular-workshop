@@ -1,0 +1,12 @@
+@use "../../../common";
+
+game-engine {
+  display: grid;
+  grid-template-columns: repeat(20, 20px);
+  grid-template-rows: repeat(20, 20px);
+  background: common.$chroma-1;
+
+  .player {
+    background: common.$chroma-5;
+  }
+}

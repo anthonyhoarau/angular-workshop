@@ -1,12 +1,8 @@
 {
-  "name": "",
+  "name": "angular-workshop",
   "version": "0.0.0",
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "chase-game": "ng serve chase-game"
   },
   "prettier": {
     "printWidth": 100,
@@ -29,6 +25,7 @@
     "@angular/platform-browser": "^20.3.0",
     "@angular/router": "^20.3.0",
     "rxjs": "~7.8.0",
+    "socket.io-client": "^4.8.1",
     "tslib": "^2.3.0"
   },
   "devDependencies": {

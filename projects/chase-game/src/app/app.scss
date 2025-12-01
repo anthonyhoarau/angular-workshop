@@ -1,0 +1,23 @@
+@use "../common";
+
+:host {
+  #game-border-1 {
+    border-radius: 20px;
+    border: 10px solid common.$chroma-1;
+    box-shadow: inset 0 0 0 10px common.$chroma-4;
+  }
+
+  #game {
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 400px;
+    height: 400px;
+    margin: 10px;
+    //display: grid;
+    //grid-template-columns: repeat(20, 20px);
+    //grid-template-rows: repeat(20, 20px);
+    //border-radius: 20px;
+    //margin: 10px;
+  }
+}
