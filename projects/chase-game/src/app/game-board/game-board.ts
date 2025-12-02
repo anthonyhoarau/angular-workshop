@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {GameEngine} from './engine/game-engine';
 import {IoClient, PlayerPosition} from '@chase-game/client';
+import {toSignal} from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'game-board',
@@ -13,7 +14,7 @@ import {IoClient, PlayerPosition} from '@chase-game/client';
 export class GameBoard {
   private ioClient = inject(IoClient);
 
-  players = {};
+  players = toSignal(this.ioClient.playerList$, {requireSync: true});
   playerName = this.ioClient.playerName;
 
   protected onPositionUpdate(position: PlayerPosition) {

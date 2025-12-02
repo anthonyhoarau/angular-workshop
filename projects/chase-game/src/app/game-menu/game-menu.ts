@@ -1,4 +1,4 @@
-import {Component, inject} from '@angular/core';
+import {Component, computed, inject, signal} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
 import {IoClient} from '@chase-game/client';
@@ -12,18 +12,21 @@ import {IoClient} from '@chase-game/client';
   styleUrl: './game-menu.scss'
 })
 export class GameMenu {
-  protected playerName: string | null = null;
+  protected playerName = signal<string | null>(null);
 
-  protected startGameDisabled = true;
+  protected startGameDisabled = computed<boolean>(() => {
+    const name = this.playerName();
+    return !name || !name.trim().length;
+  });
 
-  private isPlayerFilled = false;
+  private isPlayerFilled = computed(() => !this.startGameDisabled());
 
   private router = inject(Router);
   private ioClient = inject(IoClient);
 
   protected async startGame() {
-    if (this.isPlayerFilled) {
-      const registered = await this.ioClient.registerNewPlayer(this.playerName);
+    if (this.isPlayerFilled()) {
+      const registered = await this.ioClient.registerNewPlayer(this.playerName());
       if (registered) {
         this.router.navigate(['board']);
       }

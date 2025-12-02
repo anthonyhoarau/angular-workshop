@@ -1,5 +1,5 @@
 import {PlayerPosition, Players} from '@chase-game/client';
-import {Component, ElementRef, inject, output, ViewEncapsulation} from '@angular/core';
+import {Component, computed, effect, ElementRef, inject, input, output, ViewEncapsulation} from '@angular/core';
 import {COLORS} from './colors';
 import {fromEvent} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
@@ -11,18 +11,28 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
   encapsulation: ViewEncapsulation.None,
 })
 export class GameEngine {
-  playerName: string | null = 'Player 1';
+  playerName = input<string | null>();
 
-  players: Players = {'Player1': {x: 5, y: 8}};
+  players = input<Players>({});
 
   playerPositionUpdate = output<PlayerPosition>();
 
-  private currentPlayerPosition: PlayerPosition | null = {x: 5, y: 8};
+  private currentPlayerPosition = computed(() => {
+    const players = this.players();
+    const playerName = this.playerName();
+    if (playerName && players[playerName]) {
+      return players[playerName];
+    }
+    return null;
+  });
 
   private gameBoard = inject(ElementRef<HTMLElement>);
 
   constructor() {
     // When players change, redraw them on board
+    effect(() => {
+      this.drawPlayers(this.players());
+    });
 
     this.movementManager();
   }
@@ -54,7 +64,7 @@ export class GameEngine {
   }
 
   private handleKeydown(event: KeyboardEvent) {
-    const currentPosition = this.currentPlayerPosition;
+    const currentPosition = this.currentPlayerPosition();
     if (!currentPosition) return;
 
     let updated = false;
