@@ -1,5 +1,5 @@
-import {Player, PlayerPosition} from '@chase-game/client';
-import {Component, effect, ElementRef, inject, input, output, ViewEncapsulation} from '@angular/core';
+import {PlayerPosition, Players} from '@chase-game/client';
+import {Component, ElementRef, inject, output, ViewEncapsulation} from '@angular/core';
 import {COLORS} from './colors';
 import {fromEvent} from 'rxjs';
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
@@ -12,7 +12,8 @@ import {takeUntilDestroyed} from '@angular/core/rxjs-interop';
 })
 export class GameEngine {
   playerName: string | null = 'Player 1';
-  players = input<Player[]>([{name: 'Player 1', position: {x: 5, y: 8}}]);
+
+  players: Players = {'Player1': {x: 5, y: 8}};
 
   playerPositionUpdate = output<PlayerPosition>();
 
@@ -21,17 +22,17 @@ export class GameEngine {
   private gameBoard = inject(ElementRef<HTMLElement>);
 
   constructor() {
+    // When players change, redraw them on board
+
     this.movementManager();
-    effect(() => {
-      const players = this.players();
-      this.drawPlayers(players);
-    });
   }
 
-  private drawPlayers(players: Player[]) {
-    players.forEach((player, index) => {
+  // To be called to draw all players on board
+  private drawPlayers(players: Players) {
+    this.gameBoard.nativeElement.innerHTML = '';
+    Object.keys(players).forEach((playerName, index) => {
       const el = this.createPlayer(index);
-      this.setPosition(el, player.position);
+      this.setPosition(el, players[playerName]);
       this.gameBoard.nativeElement.appendChild(el);
     })
   }
@@ -53,29 +54,32 @@ export class GameEngine {
   }
 
   private handleKeydown(event: KeyboardEvent) {
-    if (!this.currentPlayerPosition) return;
+    const currentPosition = this.currentPlayerPosition;
+    if (!currentPosition) return;
 
-    const position = {...this.currentPlayerPosition};
+    let updated = false;
+    const position = {...currentPosition};
     switch (event.key) {
       case 'ArrowUp':
         position.y--;
+        updated = true;
         break;
       case 'ArrowDown':
         position.y++;
+        updated = true;
         break;
       case 'ArrowLeft':
         position.x--;
+        updated = true;
         break
       case 'ArrowRight':
         position.x++;
+        updated = true;
         break;
     }
 
-    this.playerPositionUpdate.emit(position);
+    if (updated) {
+      this.playerPositionUpdate.emit(position);
+    }
   }
-}
-
-
-function findCurrentPlayerByName(players: Player[], name: string) {
-  return players.find(player => player.name === name);
 }

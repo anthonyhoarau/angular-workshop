@@ -1,6 +1,7 @@
 import {Component, inject} from '@angular/core';
 import {Router} from '@angular/router';
 import {FormsModule} from '@angular/forms';
+import {IoClient} from '@chase-game/client';
 
 @Component({
   selector: 'game-menu',
@@ -11,17 +12,21 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './game-menu.scss'
 })
 export class GameMenu {
-  protected playerName: string | null = null;
+  protected playerName: string | null = 'Player 1';
 
   protected startGameDisabled = true;
 
   private isPlayerFilled = false;
 
   private router = inject(Router);
+  private ioClient = inject(IoClient);
 
-  protected startGame() {
+  protected async startGame() {
     if (this.isPlayerFilled) {
-      this.router.navigate(['board']);
+      const registered = await this.ioClient.registerNewPlayer(this.playerName);
+      if (registered) {
+        this.router.navigate(['board']);
+      }
     }
   }
 }

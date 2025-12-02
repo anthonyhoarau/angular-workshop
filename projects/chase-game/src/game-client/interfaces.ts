@@ -7,3 +7,5 @@ export interface Player {
   name: string;
   position: PlayerPosition;
 }
+
+export type Players = Record<string, PlayerPosition>;

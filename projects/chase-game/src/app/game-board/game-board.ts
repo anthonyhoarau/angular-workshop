@@ -1,5 +1,6 @@
-import {Component} from '@angular/core';
+import {Component, inject} from '@angular/core';
 import {GameEngine} from './engine/game-engine';
+import {IoClient, PlayerPosition} from '@chase-game/client';
 
 @Component({
   selector: 'game-board',
@@ -9,4 +10,13 @@ import {GameEngine} from './engine/game-engine';
     GameEngine
   ]
 })
-export class GameBoard {}
+export class GameBoard {
+  private ioClient = inject(IoClient);
+
+  players = {};
+  playerName = this.ioClient.playerName;
+
+  protected onPositionUpdate(position: PlayerPosition) {
+    this.ioClient.sendPosition(position);
+  }
+}
