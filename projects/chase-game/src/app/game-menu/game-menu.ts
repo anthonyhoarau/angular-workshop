@@ -12,7 +12,7 @@ import {IoClient} from '@chase-game/client';
   styleUrl: './game-menu.scss'
 })
 export class GameMenu {
-  protected playerName: string | null = 'Player 1';
+  protected playerName: string | null = null;
 
   protected startGameDisabled = true;
 
