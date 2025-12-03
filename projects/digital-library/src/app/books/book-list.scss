@@ -48,7 +48,7 @@
     color: var(--app-text);
 
     &.active {
-      color: yellow;
+      color: var(--app-accent-color);
     }
 
     svg {

@@ -1,7 +1,7 @@
 <nav>
-<input class="search-field" type="search" placeholder="Search"/>
-<button class="active">Books</button>
-<button>Favorites</button>
+<input [(ngModel)]="search" class="search-field" type="search" placeholder="Search"/>
+<button [class.active]="!isFavoriteFilter()" (click)="displayAll()">Books</button>
+<button [class.active]="isFavoriteFilter()" (click)="displayFavorites()">Favorites</button>
 </nav>
 
 <div class="app-logo">DL</div>

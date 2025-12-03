@@ -1,10 +1,11 @@
-import { ApplicationConfig, provideBrowserGlobalErrorListeners, provideZonelessChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  provideBrowserGlobalErrorListeners,
+  provideZonelessChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
-
 import { routes } from './app.routes';
-import {provideGameClient} from '../game-client';
-import { provideStore } from '@ngrx/store';
-import { provideEffects } from '@ngrx/effects';
+import { provideGameClient } from '../game-client';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -12,7 +13,5 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideGameClient(),
     provideRouter(routes),
-    provideStore(),
-    provideEffects()
-]
+  ],
 };

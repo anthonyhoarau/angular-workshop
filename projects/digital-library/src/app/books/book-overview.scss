@@ -31,6 +31,9 @@
       border-radius: var(--app-border-radius);
       //background: var(--app-theme-4);
       padding: var(--app-space-sm);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
     }
   }
 

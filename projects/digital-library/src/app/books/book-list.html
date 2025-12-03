@@ -1,8 +1,10 @@
 <h2>Book list</h2>
 <div class="book-cover-content">
-  <div class="book-cover" style="background-image: url('http://books.google.com/books/content?id=7WTjEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api')">
-    <div class="favorite">
-      <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" class="mrv-icon-svg"><path d="M394,480a16,16,0,0,1-9.39-3L256,383.76,127.39,477a16,16,0,0,1-24.55-18.08L153,310.35,23,221.2A16,16,0,0,1,32,192H192.38l48.4-148.95a16,16,0,0,1,30.44,0l48.4,149H480a16,16,0,0,1,9.05,29.2L359,310.35l50.13,148.53A16,16,0,0,1,394,480Z"></path></svg>
+  @for (book of books(); track book.id) {
+    <div class="book-cover" [class.active]="isActive()" [style]="'background-image: url(' + book.volumeInfo.imageLinks.thumbnail + ')'" (click)="selectBook(book)">
+      <div class="favorite" [class.active]="isFavorite(book)">
+        <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" class="mrv-icon-svg"><path d="M394,480a16,16,0,0,1-9.39-3L256,383.76,127.39,477a16,16,0,0,1-24.55-18.08L153,310.35,23,221.2A16,16,0,0,1,32,192H192.38l48.4-148.95a16,16,0,0,1,30.44,0l48.4,149H480a16,16,0,0,1,9.05,29.2L359,310.35l50.13,148.53A16,16,0,0,1,394,480Z"></path></svg>
+      </div>
     </div>
-  </div>
+  }
 </div>

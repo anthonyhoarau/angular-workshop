@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map, Observable, of } from 'rxjs';
 
-interface Book {
+export interface Book {
   id: string;
   volumeInfo: {
     title: string;

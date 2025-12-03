@@ -1,12 +1,18 @@
-<div class="book-overview-inner" style="background-image: url('http://books.google.com/books/content?id=7WTjEAAAQBAJ&printsec=frontcover&img=1&zoom=1&edge=curl&source=gbs_api')">
+<div class="book-overview-inner" [style]="'background-image: url(' + book()?.volumeInfo?.imageLinks?.thumbnail + ')'">
   <div style="grid-row: 2">
-    <span class="title">Book Name</span>
+    <span class="title" [innerHTML]="book()?.volumeInfo?.title"></span>
   </div>
   <div style="grid-row: 3" class="description">
-    <span>Description zefzefzefzefzefzef zf zef zef zf azf f   zf zef zef zef zfe e egerg </span>
+    <span [innerHTML]="book()?.volumeInfo?.description"></span>
   </div>
 
   <div style="grid-row: 3; grid-column: 3; position: relative">
-    <button class="favorite-button">Add to favorite</button>
+    <button class="favorite-button" (click)="toggleFavorite()">
+      @if (isFavorite()) {
+        Remove from favorite
+      } @else {
+        Add to favorite
+      }
+    </button>
   </div>
 </div>
