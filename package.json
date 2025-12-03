@@ -2,7 +2,8 @@
   "name": "angular-workshop",
   "version": "0.0.0",
   "scripts": {
-    "chase-game": "ng serve chase-game"
+    "chase-game": "ng serve chase-game",
+    "digital-library": "ng serve digital-library"
   },
   "prettier": {
     "printWidth": 100,

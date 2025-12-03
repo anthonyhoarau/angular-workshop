@@ -29,6 +29,9 @@
     },
     {
       "path": "./projects/chase-game/tsconfig.app.json"
+    },
+    {
+      "path": "./projects/digital-library/tsconfig.app.json"
     }
   ]
 }
