@@ -1,10 +1,38 @@
 /* You can add global styles to this file, and also import other style files */
 :root {
-  --primary-color: #D43534;
-  --app-background: #0D0D0D;
+  --app-primary-color: #bf3130;
+  --app-accent-color: #800404;
+  --app-background: #0a0a1c;
   --app-text: #ffffff;
+  --app-text-contrast: #252424;
   --app-theme-1: #4A5AE4;
   --app-theme-2: #A5B4FF;
   --app-theme-3: #110E73;
-  --app-border-radius: 10px;
+  --app-theme-4: #09073a;
+  --app-border-radius: 16px;
+
+  --app-space-xs: 0.5rem;
+  --app-space-sm: 0.75rem;
+  --app-space-md: 1.25rem;
+  --app-space-lg: 2rem;
+  --app-gutter: 4rem;
+  --app-font: Roboto, "Helvetica Neue", sans-serif;
+}
+
+html {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+body {
+  position: relative;
+  margin: 0;
+  height: 100%;
+  font-size: 1rem;
+  line-height: 1.25;
+  font-family: var(--app-font);
+  color: var(--app-text);
+  background: var(--app-background);
 }

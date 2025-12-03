@@ -1,11 +1,15 @@
-import {Component} from '@angular/core';
-import {RouterOutlet} from '@angular/router';
+import { Component, signal } from '@angular/core';
+import { BookOverview } from './books/book-overview';
+import { BookList } from './books/book-list';
+import { BookMenu } from './menu/book-menu';
+import { ProgressSpinner } from './shared/progress-spinner';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [BookOverview, BookList, BookMenu, ProgressSpinner],
   templateUrl: './app.html',
-  styleUrl: './app.scss'
+  styleUrl: './app.scss',
 })
 export class App {
+  protected processing = signal(false);
 }

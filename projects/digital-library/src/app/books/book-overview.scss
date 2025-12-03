@@ -1,0 +1,69 @@
+:host {
+  position: relative;
+  padding: 0  var(--app-gutter) var(--app-space-md);
+
+  .book-overview-inner {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-rows: 2fr 1fr 2fr;
+    gap: var(--app-space-xs);
+    padding: var(--app-space-xs);
+    height: 100%;
+    border-radius: var(--app-border-radius);
+    border: 4px solid var(--app-theme-2);
+
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+
+    span.title {
+      text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.6);
+      font-size: 1.5rem;
+      border-radius: var(--app-border-radius);
+      margin: 0;
+      padding: 0 var(--app-space-sm);
+      //background: var(--app-theme-3);
+    }
+
+    .description {
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+      border-radius: var(--app-border-radius);
+      //background: var(--app-theme-4);
+      padding: var(--app-space-sm);
+    }
+  }
+
+  .favorite-button {
+    position: absolute;
+    bottom: 4px;
+    right: 4px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    user-select: none;
+    -webkit-appearance: none;
+    overflow: visible;
+    width: fit-content;
+    white-space: nowrap;
+    text-decoration: none;
+    background: var(--app-background);
+    color: var(--app-text);
+    font-size: inherit;
+    font-family: var(--app-font);
+    font-weight: bold;
+    border-radius: var(--app-border-radius);
+    padding: 0 var(--app-space-sm);
+    line-height: 2;
+
+    &:hover {
+      cursor: pointer;
+      background: var(--app-theme-2);
+      color: var(--app-text-contrast);
+    }
+  }
+}

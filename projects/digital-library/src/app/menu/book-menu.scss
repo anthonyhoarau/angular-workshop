@@ -1,0 +1,67 @@
+:host {
+  position: relative;
+  display: inline-flex;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: var(--app-space-md) var(--app-gutter);
+
+  nav {
+    display: inline-flex;
+    gap: var(--app-space-sm);
+
+    button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      box-sizing: border-box;
+      border: none;
+      outline: none;
+      user-select: none;
+      -webkit-appearance: none;
+      overflow: visible;
+      width: fit-content;
+      white-space: nowrap;
+      text-decoration: none;
+      background: transparent;
+      color: var(--app-text);
+      font-size: inherit;
+      font-family: var(--app-font);
+      font-weight: bold;
+      border-radius: var(--app-border-radius);
+      padding: 0 var(--app-space-sm);
+      line-height: 2;
+
+      &:hover:not(.active) {
+        cursor: pointer;
+        background: var(--app-theme-2);
+        color: var(--app-text-contrast);
+      }
+
+      &.active {
+        background: var(--app-theme-1);
+      }
+    }
+  }
+
+  .search-field {
+    line-height: 2;
+    border-radius: var(--app-border-radius);
+    border: none;
+    background: var(--app-theme-2);
+    padding: 0 var(--app-space-sm);
+
+    &::placeholder {
+      color: var(--app-background); /* Changes the placeholder text color */
+      opacity: 0.5;
+    }
+  }
+
+  .app-logo {
+    border-radius: 50%;
+    background: var(--app-accent-color);
+    padding: var(--app-space-xs);
+    font-weight: bolder;
+    color: var(--app-primary-color);
+  }
+}

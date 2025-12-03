@@ -1,6 +1,9 @@
-<nav>
-  <div class="search"><input type="search"/></div>
-  <a href="/html/">Books</a>
-  <a href="/html/">Favorites</a>
-</nav>
-<router-outlet />
+@if (processing()) {
+  <progress-spinner/>
+}
+
+<book-menu/>
+
+<book-overview/>
+
+<book-list/>
