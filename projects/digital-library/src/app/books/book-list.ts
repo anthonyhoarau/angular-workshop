@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { Book } from '../google-api';
+import { BookFacade } from '@digital-library/state';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'book-list',
@@ -7,7 +9,9 @@ import { Book } from '../google-api';
   styleUrl: './book-list.scss',
 })
 export class BookList {
-  protected books = signal<Book[]>([]);
+  private bookFace = inject(BookFacade);
+
+  protected books = toSignal<Book[]>(this.bookFace.books$, { requireSync: true });
 
   protected selectBook(book: Book) {}
 
