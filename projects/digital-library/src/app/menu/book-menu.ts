@@ -1,5 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { BookFacade } from '@digital-library/state';
+import { toSignal } from '@angular/core/rxjs-interop';
 
 @Component({
   selector: 'book-menu',
@@ -8,10 +10,16 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
 })
 export class BookMenu {
+  private bookFacade = inject(BookFacade);
+
   protected search = signal('');
-  protected isFavoriteFilter = signal(false);
+  protected isFavoriteFilter = toSignal(this.bookFacade.isFavoriteFilter$, { requireSync: true });
 
-  protected displayAll() {}
+  protected displayAll() {
+    this.bookFacade.applyFilter('all');
+  }
 
-  protected displayFavorites() {}
+  protected displayFavorites() {
+    this.bookFacade.applyFilter('favorite');
+  }
 }

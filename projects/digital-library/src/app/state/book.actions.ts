@@ -5,6 +5,8 @@ export const BookActions = createActionGroup({
   source: 'Book UI',
   events: {
     loadBooks: emptyProps(),
+    selectBook: props<{ bookId: string }>(),
+    setFilter: props<{ filter: 'all' | 'favorite' }>(),
   },
 });
 

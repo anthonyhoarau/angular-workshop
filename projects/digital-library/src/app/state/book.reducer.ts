@@ -13,6 +13,8 @@ const initialBookState: BookState = {
 const bookReducer = createReducer(
   initialBookState,
   on(BookActions.loadBooks, (state) => ({ ...state, processing: true })),
+  on(BookActions.selectBook, (state, payload) => ({ ...state, selectedBookId: payload.bookId })),
+  on(BookActions.setFilter, (state, payload) => ({ ...state, bookFilter: payload.filter })),
 
   on(BookApiActions.loadBooksSuccess, (state, payload) => {
     return { ...state, processing: false, books: payload.books };
